@@ -123,6 +123,15 @@ AUTH_USER_MODEL = 'jelibit.CustomUser'
 
 
 
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL', 'postgresql://jelibit_database_user:KfqTKHPLVnCGb1yfOwA3023GODRIe0Us@dpg-d2tb99vdiees7383lls0-a/jelibit_database'),
+        conn_max_age=600,
+        ssl_require=True
+    )
+}
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
