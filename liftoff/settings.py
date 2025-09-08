@@ -33,10 +33,19 @@ CORS_ALLOWED_ORIGINS = ['http://localhost:3000',
                         'http://10.0.2.2:8000',
                         'http://192.168.0.1:8000',
                         'https://liftoff-mmaa.onrender.com',
+                        'http://127.0.0.1:5500',
                         ] 
 #not in productions
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
 # Application definition
+
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'authorization',
+    'cache-control',
+]
+
 
 INSTALLED_APPS = [
     'jelibit',
