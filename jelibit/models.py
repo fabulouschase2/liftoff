@@ -48,7 +48,7 @@ class EmailVerificationCode(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def is_expired(self):
-        expiration_time = timezone.now() - timedelta(minutes=2)
+        expiration_time = timezone.now() - timedelta(minutes=10)
         CustomUser.objects.filter(is_active=False, created_at__lt=expiration_time).delete()   
         
 
