@@ -54,7 +54,7 @@ class EmailVerificationCode(models.Model):
 
     @staticmethod
     def generate_code():
-        return f"{random.randint(10000, 99999)}"
+        return f"{random.randint(1000, 9999)}"
     
     def send_otp_email(user, otp):
         subject = "Your OTP Code"
