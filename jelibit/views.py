@@ -41,7 +41,7 @@ class VerifyEmailView(APIView):
         if serializer.is_valid():
             email = serializer.validated_data['email']
             code_input = serializer.validated_data['otp']
-            expiration_time = timezone.now() - timedelta(minutes=2)
+            expiration_time = timezone.now() - timedelta(minutes=10)
             CustomUser.objects.filter(is_active=False, created_at__lt=expiration_time).delete()   
 
             try:
