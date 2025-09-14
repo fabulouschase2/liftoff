@@ -5,6 +5,7 @@ from django.core.mail import send_mail
 from django.contrib.auth import authenticate
 from django.utils import timezone
 from datetime import timedelta
+from rest_framework.permissions import IsAuthenticated
 import re
 from django.conf import settings
 
@@ -38,14 +39,14 @@ class RegisterView(APIView):
 
 
 class ResendOTP(APIView):
+    permission_classes = [IsAuthenticated]
     """API view to resend OTP for email verification."""
 
     def post(self, request):
-        """Handle POST requests to resend OTP."""
-        email = request.data.get('email')
+        email = request.user.email  # Get email from authenticated user
 
         # Validate email
-        if not email or not re.match(r'^[\w\.-]+@[\w\.-]+\.\w+$', email):
+        if not email :
             return Response(
                 {"message": "Valid email is required"},
                 status=status.HTTP_400_BAD_REQUEST
