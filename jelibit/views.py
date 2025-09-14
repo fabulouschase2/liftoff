@@ -33,7 +33,23 @@ class RegisterView(APIView):
             return Response({"message": "User registered. Verification code sent."}, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class resendotp(APIView):
+    def resendpost(self, request):
+        serializer = RegisterSerializer(data=request.data)
+        if CustomUser.objects.filter(email=CustomUser.email).exists() and CustomUser.objects.filter(email=CustomUser.email).is_active:
+            user = serializer.save()
 
+            otp = EmailVerificationCode.generate_code()
+            EmailVerificationCode.objects.create(user=user, otp=otp)
+
+            send_mail(
+                "Your verification code",
+                f"Use this code to verify your account: {otp}",
+                "belloabdulrahmon345@gmail.com",
+                [user.email],
+                fail_silently=True,
+            )
+            return Response({"message":"Verification code sent."},status=status.HTTP_201_CREATED)
 
 class VerifyEmailView(APIView):
     def post(self, request):
