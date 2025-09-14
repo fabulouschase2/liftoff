@@ -38,55 +38,43 @@ class RegisterView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+
+
 class ResendOTP(APIView):
-    permission_classes = [IsAuthenticated]
-    """API view to resend OTP for email verification."""
-
     def post(self, request):
-        email = request.user.email  # Get email from authenticated user
-
-        # Validate email
-        if not email :
+        email = request.data.get('email')
+        if not email or not re.match(r'^[\w\.-]+@[\w\.-]+\.\w+$', email):
             return Response(
                 {"message": "Valid email is required"},
                 status=status.HTTP_400_BAD_REQUEST
             )
-
         try:
-            # Check if user exists and is not active
             user = CustomUser.objects.get(email=email)
             if user.is_active:
                 return Response(
                     {"message": "User is already verified"},
                     status=status.HTTP_400_BAD_REQUEST
                 )
-
-            # Generate and save new OTP
             otp = EmailVerificationCode.generate_code()
-            EmailVerificationCode.objects.filter(user=user).delete()  # Delete existing OTPs
+            EmailVerificationCode.objects.filter(user=user).delete()
             EmailVerificationCode.objects.create(user=user, otp=otp)
-
-            # Send email
             send_mail(
                 subject="Your Verification Code",
                 message=f"Use this code to verify your account: {otp}",
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=[user.email],
-                fail_silently=False,  # Raise exception if email fails
+                fail_silently=False,
             )
-
             return Response(
                 {"message": "Verification code resent successfully"},
                 status=status.HTTP_200_OK
             )
-
         except CustomUser.DoesNotExist:
             return Response(
                 {"message": "User with this email does not exist"},
                 status=status.HTTP_404_NOT_FOUND
             )
         except Exception as e:
-            # Log the error (you can use Django's logging framework)
             return Response(
                 {"message": "Failed to send verification code"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
