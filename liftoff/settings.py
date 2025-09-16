@@ -48,7 +48,6 @@ CORS_ALLOW_HEADERS = [
 
 
 INSTALLED_APPS = [
-    'knox', # For token-based authentication
     'django.contrib.sites',  # Required for email links
     'jelibit',
     'corsheaders',
