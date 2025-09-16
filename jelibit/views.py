@@ -14,6 +14,7 @@ from .serializers import (
     RegisterSerializer, VerifyEmailSerializer,
     LoginSerializer, CustomUserSerializer, postserializer
 )
+from .serializers import PasswordResetRequestSerializer, PasswordResetConfirmSerializer
 
 
 class RegisterView(APIView):
@@ -125,6 +126,31 @@ class LoginView(APIView):
             return Response({"error": "Invalid credentials or unverified account"}, status=status.HTTP_401_UNAUTHORIZED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+
+
+# yourapp/views.py
+
+
+class PasswordResetRequestView(APIView):
+    def post(self, request):
+        serializer = PasswordResetRequestSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"message": "Password reset email sent."}, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class PasswordResetConfirmView(APIView):
+    def post(self, request, token):
+        serializer = PasswordResetConfirmSerializer(data={**request.data, 'token': token})
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"message": "Password reset successful."}, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
 
 
 
