@@ -48,6 +48,8 @@ CORS_ALLOW_HEADERS = [
 
 
 INSTALLED_APPS = [
+    'knox', # For token-based authentication
+    'django.contrib.sites',  # Required for email links
     'jelibit',
     'corsheaders',
     'rest_framework',
@@ -160,6 +162,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'knox.auth.TokenAuthentication',
     )
 }
 
