@@ -14,6 +14,6 @@ urlpatterns = [
     path('token/refresh', TokenRefreshView.as_view(), name='token_refresh'),
     path('post', views.postview.as_view(), name='post'),
     path('broadcast', views.UserPostsView.as_view(), name='broadcast-post'),
-    path('password_reset/request/', views.PasswordResetRequestView.as_view(), name='password_reset_request'),
-    path('password_reset/confirm/<uuid:token>/', views.PasswordResetConfirmView.as_view(), name='password_reset_confirm')
+    path('password_reset/request', views.PasswordResetRequestView.as_view(), name='password_reset_request'),
+    path('password_reset/confirm/<uuid:token>', views.PasswordResetConfirmView.as_view(), name='password_reset_confirm')
 ]
