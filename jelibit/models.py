@@ -66,7 +66,7 @@ class EmailVerificationCode(models.Model):
 
 
 
-# yourapp/models.py
+
 
 
 class PasswordResetToken(models.Model):
