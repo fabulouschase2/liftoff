@@ -57,8 +57,6 @@ class postserializer(serializers.ModelSerializer):
 
 
 
-# yourapp/serializers.py
-
 
 class PasswordResetRequestSerializer(serializers.Serializer):
     email = serializers.EmailField()
@@ -88,11 +86,11 @@ class PasswordResetRequestSerializer(serializers.Serializer):
             token.save()
 
         # Send reset email
-        reset_link = f"http://localhost:8000/api/password_reset/confirm/{token.token}/"
+        reset_link = f"https://liftoff-mmaa.onrender.com/api/password_reset/confirm/{token.token}/"
         send_mail(
             subject='Password Reset Request',
             message=f'Click the link to reset your password: {reset_link}',
-            from_email='your-email@gmail.com',
+            from_email='belloabdulrahmon345@gmail.com',
             recipient_list=[email],
             fail_silently=False,
         )
