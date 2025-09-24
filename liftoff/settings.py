@@ -46,11 +46,14 @@ CORS_ALLOW_HEADERS = [
     'cache-control',
 ]
 
-SITE_ID =1 
+
 
 
 
 INSTALLED_APPS = [
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'django.contrib.sites',  # Required for email links
     'allauth.socialaccount.providers.google',
     'jelibit',
@@ -63,12 +66,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.auth',
-    'django.contrib.messages',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.provider.goggle',
 ]
 
 MIDDLEWARE = [
@@ -81,7 +78,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = 'liftoff.urls'
