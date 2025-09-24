@@ -6,7 +6,7 @@ from rest_framework_simplejwt.views import (
 )
 
 urlpatterns = [
-    path('auth/social/google/',views.GoogleLogin.as_view(), name='google_login'),
+    path('/social/google/',views.GoogleLogin.as_view(), name='google_login'),
     path('register', views.RegisterView.as_view(), name='register'),
     path('resend', views.ResendOTP.as_view(), name='resendotp'),
     path('verify', views.VerifyEmailView.as_view(), name='verify_email'),
