@@ -46,9 +46,13 @@ CORS_ALLOW_HEADERS = [
     'cache-control',
 ]
 
+SITE_ID =1 
+
+
 
 INSTALLED_APPS = [
     'django.contrib.sites',  # Required for email links
+    'allauth.socialaccount.providers.google',
     'jelibit',
     'corsheaders',
     'rest_framework',
@@ -59,6 +63,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.provider.goggle',
 ]
 
 MIDDLEWARE = [
@@ -71,6 +80,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'liftoff.urls'
@@ -178,4 +188,30 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "belloabdulrahmon345@gmail.com"
 EMAIL_HOST_PASSWORD = "kaqs advy leih mkwe"
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+
+
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'app' :{
+            'Client_id': '76404664548-c4jme9v410f5i6nhl1svrj3q4a6qr90q.apps.googleusercontent.com',
+            'secret' : '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',
+        },
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'OAUTH_PKCE_ENABLED': True,
+    }
+}
+
+AUTHTENTICATION_BACKEND = {
+    "allauth.account.auth_backends.AuthenticationBackend",
+}
+
 
