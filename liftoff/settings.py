@@ -193,7 +193,9 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ]
 }
-
+REST_AUTH = {
+    'REGISTER_SERIALIZER': 'jelibit.serializers.CustomRegisterSerializer',
+}
 
 
 
