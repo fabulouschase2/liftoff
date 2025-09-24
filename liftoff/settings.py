@@ -68,6 +68,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+
+AUTHTENTICATION_BACKEND = {
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+}
+
+
+
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',  # Serves static files
@@ -208,8 +216,6 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-AUTHTENTICATION_BACKEND = {
-    "allauth.account.auth_backends.AuthenticationBackend",
-}
+
 
 
