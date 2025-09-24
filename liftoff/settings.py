@@ -233,6 +233,8 @@ SOCIALACCOUNT_LOGIN_ON_GET =True
 LOGIN_REDIRECT_URL ='broadcast'
 
 
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
-
+# Configure django-allauth to use the correct username field
+ACCOUNT_USER_MODEL_USERNAME_FIELD = 'email'  # Replace 'email' with the field you use as USERNAME_FIELD
+ACCOUNT_USERNAME_REQUIRED = False  # If you’re not using a username field
+ACCOUNT_EMAIL_REQUIRED = True  # If email is the primary identifier
+ACCOUNT_AUTHENTICATION_METHOD = 'email'  # Use email for authentication
