@@ -48,14 +48,22 @@ CORS_ALLOW_HEADERS = [
 
 
 
+from datetime import timedelta
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+}
+
+
 
 
 INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'django.contrib.sites',  # Required for email links
     'allauth.socialaccount.providers.google',
+    'dj_rest_auth',
+    'dj_rest_auth.registration',  # For registration endpoints
     'jelibit',
     'corsheaders',
     'rest_framework',
@@ -68,6 +76,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+# Sites framework (set site_id=1 in your DB or admin)
+SITE_ID = 1
 
 AUTHTENTICATION_BACKEND = [
     'django.contrib.auth.backends.ModelBackend',
