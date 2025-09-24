@@ -20,5 +20,7 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/',include('jelibit.urls')),
-    path('account/', include('allauth.urls'))
+    path('auth/', include('dj_rest_auth.urls')),  # API login/logout
+    path('auth/registration/', include('dj_rest_auth.registration.urls')),  # Registration
+    path('accounts/', include('allauth.urls')),  # Allauth social URLs (for callbacks)
 ]
