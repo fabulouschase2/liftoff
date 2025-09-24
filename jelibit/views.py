@@ -15,6 +15,8 @@ from .serializers import (
     LoginSerializer, CustomUserSerializer, postserializer
 )
 from .serializers import PasswordResetRequestSerializer, PasswordResetConfirmSerializer
+from dj_rest_auth.registration.views import SocialLoginView
+from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 
 
 class RegisterView(APIView):
@@ -148,6 +150,13 @@ class PasswordResetConfirmView(APIView):
             serializer.save()
             return Response({"message": "Password reset successful."}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+
+
+
+class GoogleLogin(SocialLoginView):
+    adapter_class = GoogleOAuth2Adapter    
 
 
 
