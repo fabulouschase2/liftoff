@@ -163,11 +163,14 @@ AUTH_USER_MODEL = 'jelibit.CustomUser'
 
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'), 
-        conn_max_age=600,
-        ssl_require=True
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'jelibit_databasetwo',
+        'USER': 'jelibit_databasetwo_user',
+        'PASSWORD': 'WjJEDL8HRz6tLpz2ILHNwQejvIBs7B7a',
+        'HOST': 'dpg-d3ie2oogjchc73e9v97g-a',
+        'PORT': '5432',
+    }
 }
 
 
