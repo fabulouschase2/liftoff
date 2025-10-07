@@ -164,7 +164,7 @@ AUTH_USER_MODEL = 'jelibit.CustomUser'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL', 'postgresql://jelibit_databasetwo_user:WjJEDL8HRz6tLpz2ILHNwQejvIBs7B7a@dpg-d3ie2oogjchc73e9v97g-a/jelibit_databasetwo'),
+        default=os.environ.get('DATABASE_URL', 'postgresql://jelibit_databasetwo_user:WjJEDL8HRz6tLpz2ILHNwQejvIBs7B7a@dpg-d3ie2oogjchc73e9v97g-a.frankfurt-postgres.render.com/jelibit_databasetwo'),
         conn_max_age=600,
         ssl_require=True
     )
