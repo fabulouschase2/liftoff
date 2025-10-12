@@ -33,7 +33,6 @@ class RegisterView(APIView):
                 f"Use this code to verify your account: {otp}",
                 "belloabdulrahmon345@gmail.com",
                 [user.email],
-                fail_silently=True,
             )
 
             return Response({"message": "User registered. Verification code sent."}, status=status.HTTP_201_CREATED)
