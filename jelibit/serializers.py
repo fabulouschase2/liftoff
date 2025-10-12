@@ -25,7 +25,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         user = CustomUser.objects.create_user(
             name=validated_data['name'],  # Assuming name is used as username
             email=validated_data['email'],
-            date_of_birth=validated_data['date_of_birth'],
+            date_of_birth=['date_of_birth'],
             password=validated_data['password'],
             # Add date_of_birth if using a custom user model
         )
