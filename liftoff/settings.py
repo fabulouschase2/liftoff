@@ -165,10 +165,10 @@ AUTH_USER_MODEL = 'jelibit.CustomUser'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'jelibit_databasetwo',
-        'USER': 'jelibit_databasetwo_user',
-        'PASSWORD': 'WjJEDL8HRz6tLpz2ILHNwQejvIBs7B7a',
-        'HOST': 'dpg-d3ie2oogjchc73e9v97g-a',
+        'NAME': 'trydatabase_pp1t',
+        'USER': 'trydatabase_pp1t_user',
+        'PASSWORD': 'v0rk3QBtNHuPHeHoJJqLvBjY7tBbautY',
+        'HOST': 'dpg-d50thhadbo4c73ca8eu0-a',
         'PORT': '5432',
     }
 }
